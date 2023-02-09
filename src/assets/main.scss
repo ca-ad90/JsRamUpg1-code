@@ -1,0 +1,193 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+// Required
+
+// Default variable overrides
+$body-bg: #000;
+$body-color: #111;
+$primary: red;
+
+// Required
+
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Josefin+Slab:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
+body {
+  background: repeating-radial-gradient(rgb(0, 0, 0) 0 0.0001%, rgb(250, 250, 250) 0 0.0002%) 50% 0/2500px 2500px,
+    repeating-conic-gradient(rgb(0, 0, 0) 0 0.0001%, rgb(250, 250, 250) 0 0.0002%) 60% 60%/2500px 2500px;
+  background-blend-mode: difference;
+  animation: b 0.2s infinite alternate;
+}
+@keyframes b {
+  100% {
+    background-position: 50% 0, 60% 50%;
+  }
+}
+
+body {
+  min-height: 100vh;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+*,
+* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Josefin Sans";
+}
+
+[v-cloak] {
+  display: none;
+}
+
+body {
+  display: flex;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+#app {
+  width: 100vw;
+  display: flex;
+  flex-flow: column;
+}
+.vi-search {
+  height: 25%;
+}
+#page-wrapper {
+  min-height: 100%;
+  transition: 0.2s;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: hsla(0deg, 0%, 0%, 0.5);
+    position: absolute;
+  }
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  &.start {
+    justify-content: center;
+    & .lblTxt {
+      background-color: white;
+      width: 80%;
+      max-width: 400px;
+      height: 6vh;
+      padding: 3px 20px;
+      border-radius: 5000px;
+      box-shadow: inset 2px 2px 1px 0px hsl(0deg 0% 50% / 80%);
+      position: relative;
+      display: flex;
+      min-height: 38px;
+      align-items: center;
+
+      & input {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        padding: 0;
+        padding-top: 3px;
+        margin: 0;
+        outline: none;
+        font-size: 120%;
+
+        &:focus-visible {
+          border: 0;
+          outline: 0;
+        }
+      }
+    }
+    & .headerText {
+      width: 100%;
+      height: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      & h1 {
+        font-size: 40px;
+        color: white;
+      }
+    }
+
+    & .gridwrapper {
+      display: none;
+    }
+
+    & header {
+      height: 70vh;
+      background-image: url(../../cut2.png);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      & .header-wrapper {
+        justify-content: flex-start;
+      }
+    }
+  }
+  &:not(.start) {
+    header {
+      height: 15vh;
+      & .header-wrapper {
+        display: block;
+      }
+    }
+    .headerText {
+      display: none;
+    }
+  }
+}
+
+main {
+  width: 100vw;
+  display: flex;
+  flex-flow: column wrap;
+  position: relative;
+  align-items: center;
+  & .gridwrapper {
+    width: 100vw;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    & .result-wrapper {
+      width: 80%;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      gap: 2vmin;
+      & .movie-thumb {
+        min-width: 200px;
+      }
+    }
+  }
+}
+
+.about {
+  & section {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    & .span-3 {
+      grid-column-start: auto;
+      grid-column-end: span 3;
+    }
+    & .span-all {
+      grid-column: 1/-1;
+    }
+  }
+}

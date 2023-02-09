@@ -1,0 +1,31 @@
+{
+  "name": "test",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "@bundled-es-modules/axios": "^0.27.2",
+    "@popperjs/core": "^2.11.6",
+    "bootstrap": "^5.2.3",
+    "pinia": "^2.0.28",
+    "prettier": "^2.8.4",
+    "vue": "^3.2.45",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "eslint": "^8.33.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-vue": "^9.9.0",
+    "sass": "^1.57.1",
+    "vite": "^4.0.0"
+  }
+}
