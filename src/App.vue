@@ -4,7 +4,6 @@ import { RouterView } from "vue-router";
 import { useMovieStore } from "./stores/movies.js";
 import { axiosInstance } from "./axios.js";
 import header from "./components/HeaderComponent.vue";
-window.axiosInstance = axiosInstance;
 export default {
     setup() {
         const movies = useMovieStore();

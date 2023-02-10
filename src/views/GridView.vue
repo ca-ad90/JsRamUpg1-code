@@ -19,7 +19,7 @@ export default {
                 console.log(
                     this.movies.searchTitle,
                     this.$route.params.title,
-                    this.movies.searchTitle == this.$route.params.title
+                    this.movies.searchTitle == this.$route.params.title,
                 );
 
                 console.log("watch query");
@@ -28,10 +28,10 @@ export default {
                 }
                 this.test(
                     this.$route.params.title,
-                    Number(this.$route.params.page)
+                    Number(this.$route.params.page),
                 );
             },
-            { immediate: true }
+            { immediate: true },
         );
     },
     data() {

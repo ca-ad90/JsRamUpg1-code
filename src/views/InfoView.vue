@@ -27,7 +27,7 @@ export default {
             this.$emit(
                 "poster",
                 "https://image.tmdb.org/t/p/w500" +
-                    this.details.data.poster_path
+                    this.details.data.poster_path,
             );
             this.hasDetails = true;
         },
@@ -50,8 +50,7 @@ export default {
                         this.details.data.poster_path
                     "
                     alt=""
-                    style="width: 100%"
-                />
+                    style="width: 100%" />
             </div>
         </section>
 
@@ -69,9 +68,11 @@ export default {
 <style lang="scss" scoped>
 //@import "../node_modules/bootstrap/scss/bootstrap";
 $primary: red;
+
 .primary {
     background-color: $primary;
 }
+
 .about {
     min-height: 100vh;
     max-width: 80%;
