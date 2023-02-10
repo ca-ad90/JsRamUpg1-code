@@ -1,0 +1,15 @@
+{
+    "liveServer.settings.ChromeDebuggingAttachment": false,
+    "[css]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "prettier.bracketSameLine": true,
+    "prettier.tabWidth": 4,
+    "prettier.vueIndentScriptAndStyle": false
+}
