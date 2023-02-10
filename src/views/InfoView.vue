@@ -1,7 +1,7 @@
 <script>
 import { axiosMovieInstance } from "../axios.js";
 export default {
-    mounted() {
+    created() {
         this.setDetails();
     },
     data() {
@@ -12,6 +12,7 @@ export default {
     },
     methods: {
         async getDetails() {
+            console.log("getDetail");
             return new Promise((res) => {
                 axiosMovieInstance
                     .get("/" + this.$route.params.id)

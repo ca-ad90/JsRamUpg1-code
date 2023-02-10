@@ -1,6 +1,5 @@
 <script>
 import { RouterLink } from "vue-router";
-import { axiosMovieInstance } from "../axios.js";
 export default {
     components: {
         "router-link": RouterLink,
@@ -11,9 +10,7 @@ export default {
             required: true,
         },
     },
-    mounted() {
-        this.setDetails();
-    },
+    mounted() {},
     data() {
         return {
             hasDetails: false,
@@ -30,24 +27,6 @@ export default {
     },
     emits: ["poster"],
     methods: {
-        async getDetails() {
-            return new Promise((res) => {
-                axiosMovieInstance.get("/" + this.info.id).then((response) => {
-                    console.log("response", response);
-                    res(response);
-                });
-            });
-        },
-        async setDetails() {
-            if (Object.prototype.hasOwnProperty.call(this.info, "bajs")) {
-                this.bajs = this.info.details;
-                this.hasDetails = true;
-            } else {
-                this.details = await this.getDetails(this.info.id);
-
-                this.hasDetails = true;
-            }
-        },
         posterEmit(str) {
             console.log("posterEmit1s", str);
             this.$emit("poster", str);
@@ -81,9 +60,6 @@ export default {
             @mouseleave="posterEmit(null)"
         >
             <p>{{ info.title }}</p>
-            <div v-if="hasDetails">
-                <p>{{ details }}</p>
-            </div>
         </div>
         <div
             v-else
