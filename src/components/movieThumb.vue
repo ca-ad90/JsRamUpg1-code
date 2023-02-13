@@ -21,14 +21,13 @@ export default {
     computed: {
         HasDetails() {
             this.setDetails();
-            console.log(this.bajs, this.info.id);
+
             return this.details;
         },
     },
     emits: ["poster"],
     methods: {
         posterEmit(str) {
-            console.log("posterEmit1s", str);
             this.$emit("poster", str);
         },
     },
@@ -38,34 +37,27 @@ export default {
 <template>
     <router-link
         :to="`/info/${info.id}`"
-        class="movie-thumb"
-        :style="
-            'background-image:url(https://image.tmdb.org/t/p/w500' +
-            info.poster_path +
-            ';'
-        "
-        :details="details"
-    >
+        :class="{ 'movie-thumb': true, 'no-poster': !info.poster_path }"
+        :style="''"
+        :details="details">
         <div
             v-if="info"
-            class="movie-thumb-old"
+            :class="{ 'movie-thumb-old': true, 'no-poster': !info.poster_path }"
             :style="
                 'background-image:url(https://image.tmdb.org/t/p/w500' +
                 info.poster_path +
-                ';'
+                ');background-color:hsla(0,0%,100%,0.8);'
             "
             @mouseover="
                 posterEmit('https://image.tmdb.org/t/p/w500' + info.poster_path)
             "
-            @mouseleave="posterEmit(null)"
-        >
+            @mouseleave="posterEmit(null)">
             <p>{{ info.title }}</p>
         </div>
         <div
             v-else
             class="movie-thumb loading"
-            :style="'border:1px solid black; padding:25px;'"
-        ></div>
+            :style="'border:1px solid black; padding:25px;'"></div>
     </router-link>
 </template>
 
@@ -84,20 +76,30 @@ export default {
     align-items: center;
     position: relative;
     transition: 0.2s;
+    margin: 1vmin 1vmin;
+    top: 0px;
 
     & div {
         position: relative;
         width: 100%;
         height: 100%;
+        background-position: 50% 10%;
+        background-size: cover;
+        overflow: hidden;
     }
-
+    &.no-poster {
+        background-color: hsla(0deg, 0%, 100%, 0.5);
+    }
     &:hover {
         width: 26%;
         height: 28vmax;
+        top: 1.5vmin;
+        margin: -2vmin 0px;
     }
 
     &:hover p,
-    & p:hover {
+    & p:hover,
+    &.no-poster p {
         opacity: 0.8;
     }
 

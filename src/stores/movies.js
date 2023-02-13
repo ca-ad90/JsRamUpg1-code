@@ -52,18 +52,22 @@ export const useMovieStore = defineStore("movies", {
                         params: query,
                     })
                     .then((response) => {
+                        console.log("\nSearchAction:");
                         let data = response.data;
-                        console.log("data.Search", data.results);
                         if (data.results) {
+                            console.log("res");
+                            console.log(data, "\n\n");
                             res(data);
                         } else {
+                            console.log("rej");
+                            console.log(data, "\n");
                             rej(data);
                         }
                     });
             });
         },
         async resetSearch(title) {
-            console.log("-----RESET-----");
+            console.log("\n-----RESET-----\n");
             this.searchTitle = title ? title : null;
             this.currentPage = 1;
             this.isSearching = false;
@@ -72,7 +76,9 @@ export const useMovieStore = defineStore("movies", {
             this.list = [];
         },
         async startSearch(title) {
+            console.log("\nStart Search:");
             if (this.list.length >= this.currentPage * this.itemsPerPage) {
+                console.log("return currentList\n", this.currentList, "\n\n");
                 return this.currentList;
             }
             this.searchTitle =
@@ -82,16 +88,23 @@ export const useMovieStore = defineStore("movies", {
                 this.currentPage * this.itemsPerPage,
                 this.totalResults,
             );
-            let apiPage = Math.floor(newCount / 20);
+            console.log(newCount);
+            let apiPage = Math.ceil(newCount / 20);
             apiPage = apiPage < 1 ? 1 : apiPage;
-            console.log("apiPage", apiPage);
             let searchLoop = async (arr = [], n = apiPage) => {
+                console.log("\n---------------\nStart searchLoop:");
                 let max = newCount;
-                console.log("max:", max);
-                console.log("arrLength", arr.length);
-                console.log("arr", arr);
-                console.log("list", this.list.length, this.list);
+                console.log("\narr:", JSON.parse(JSON.stringify(arr)), "\n");
+                console.log(
+                    "list",
+                    JSON.parse(JSON.stringify(this.list)),
+                    "\n",
+                );
                 if (arr.length + this.list.length >= max) {
+                    console.log(
+                        "\nReturn arr",
+                        JSON.parse(JSON.stringify(arr.map((e) => e.id))),
+                    );
                     return arr;
                 } else {
                     console.log("n:", n);
@@ -102,7 +115,10 @@ export const useMovieStore = defineStore("movies", {
                     if (
                         !Object.prototype.hasOwnProperty.call(data, "results")
                     ) {
-                        console.log("BAJS", arr);
+                        console.log(
+                            "\n-----------------\n-----------------\n-----------------\n-----------------BAJS",
+                            arr,
+                        );
                         throw new Error();
                     }
                     this.totalResults = data.total_results;
@@ -118,13 +134,15 @@ export const useMovieStore = defineStore("movies", {
             };
             if (this.list.length < newCount) {
                 let newData = await searchLoop();
+                console.log("newData", newData);
                 for (let m of newData) {
                     this.list.push(m);
                 }
             }
 
             this.isSearching = false;
-            console.log("list2", this.list.length);
+            console.log("list2", this.list.length, this.list);
+            console.log(this.currentList);
             return this.currentList;
         },
     },

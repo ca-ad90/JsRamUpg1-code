@@ -105,7 +105,6 @@ export default {
         },
         getCurrentList() {},
         gridEmit(payload) {
-            console.log("psterEmit2", payload);
             this.$emit("poster", payload);
         },
     },
@@ -126,19 +125,13 @@ export default {
 
 <style scoped>
 .nav {
+    width: 100%;
     display: flex;
-    margin: 25px;
-}
-
-a {
-    color: white;
-    text-decoration: none;
-    font-weight: 300;
-    font-family: "josefin Slab";
-}
-
-.bold {
-    font-weight: bold;
+    margin: 25px 0px;
+    justify-content: center;
+    align-items: center;
+    background-color: hsla(0deg, 0%, 100%, 0.8);
+    padding: 10px 0px;
 }
 
 .rLink {

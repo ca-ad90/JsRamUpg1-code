@@ -39,6 +39,9 @@ export default {
     <div class="primary">Detta är ny Primary färg i bootstrap</div>
 
     <div v-if="hasDetails" class="about container-lg">
+        <h3>
+            <a href="javascript:history.go(-1)"> {{ "<<" }}Go Back</a>
+        </h3>
         <section>
             <div class="span-all">
                 <h1>{{ details.data.title }}</h1>

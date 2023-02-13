@@ -50,7 +50,7 @@ export default {
             if (!payload) {
                 this.bg = "none";
             }
-            console.log("setBG", payload);
+
             this.bg = `url(${payload})`;
         },
     },

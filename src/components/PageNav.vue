@@ -50,19 +50,18 @@ export default {
         <router-link
             class="rLink"
             active-class="disabled"
-            :to="`/search/${$route.params.title}/page/${prevPage}`"
+            :to="`/search/${$route.params.title}/page/${prevPage}`">
+            {{ "<<" }}PREV PAGE</router-link
         >
-            --PREV PAGE</router-link
-        >
-        <span>
-            <template v-for="val in pageList" :key="val">
-                <router-link
-                    active-class="bold"
-                    :to="`/search/${$route.params.title}/page/` + val"
-                    >{{ val }}</router-link
-                >...
-            </template>
-        </span>
+
+        <template v-for="val in pageList" :key="val">
+            <router-link
+                v-if="Number(val) > 0"
+                active-class="bold"
+                :to="`/search/${$route.params.title}/page/` + val"
+                ><span class="nav-nr">{{ val }}</span></router-link
+            >
+        </template>
         <router-link
             class="rLink"
             active-class="disabled"
@@ -71,3 +70,13 @@ export default {
         >
     </div>
 </template>
+<style scoped lang="scss">
+.bold {
+    $link-color: #000;
+    font-size: 150%;
+}
+span.nav-nr {
+    display: block;
+    margin: 0px 10px;
+}
+</style>
