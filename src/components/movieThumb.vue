@@ -38,8 +38,7 @@ export default {
     <router-link
         :to="`/info/${info.id}`"
         :class="{ 'movie-thumb': true, 'no-poster': !info.poster_path }"
-        :style="''"
-        :details="details">
+        :style="''">
         <div
             v-if="info"
             :class="{ 'movie-thumb-old': true, 'no-poster': !info.poster_path }"
