@@ -1,8 +1,9 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import GridView from "../views/GridView.vue";
 import InfoView from "../views/InfoView.vue";
+console.log(import.meta.env.BASE_URL);
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
+    history: createWebHashHistory(),
     routes: [
         {
             path: "/",

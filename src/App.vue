@@ -16,8 +16,7 @@ export default {
     },
     watch: {
         "movies.list"(oldVal, newVal) {
-            console.log("old", oldVal);
-            console.log("new", newVal);
+            console.log(oldVal, newVal);
         },
     },
     data() {

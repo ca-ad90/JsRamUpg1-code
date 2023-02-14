@@ -12,9 +12,7 @@ export default {
         "router-link": RouterLink,
         "vi-search": viSearch,
     },
-    mounted() {
-        console.log(this.title, this.searchTitle);
-    },
+    mounted() {},
     data() {
         return {
             title: "",

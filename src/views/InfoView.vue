@@ -12,12 +12,10 @@ export default {
     },
     methods: {
         async getDetails() {
-            console.log("getDetail");
             return new Promise((res) => {
                 axiosMovieInstance
                     .get("/" + this.$route.params.id)
                     .then((response) => {
-                        console.log("response", response);
                         res(response);
                     });
             });

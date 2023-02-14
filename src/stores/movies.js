@@ -46,28 +46,21 @@ export const useMovieStore = defineStore("movies", {
     actions: {
         search(query) {
             return new Promise((res, rej) => {
-                console.log(query);
                 axiosInstance
                     .get("", {
                         params: query,
                     })
                     .then((response) => {
-                        console.log("\nSearchAction:");
                         let data = response.data;
                         if (data.results) {
-                            console.log("res");
-                            console.log(data, "\n\n");
                             res(data);
                         } else {
-                            console.log("rej");
-                            console.log(data, "\n");
                             rej(data);
                         }
                     });
             });
         },
         async resetSearch(title) {
-            console.log("\n-----RESET-----\n");
             this.searchTitle = title ? title : null;
             this.currentPage = 1;
             this.isSearching = false;
@@ -76,9 +69,7 @@ export const useMovieStore = defineStore("movies", {
             this.list = [];
         },
         async startSearch(title) {
-            console.log("\nStart Search:");
             if (this.list.length >= this.currentPage * this.itemsPerPage) {
-                console.log("return currentList\n", this.currentList, "\n\n");
                 return this.currentList;
             }
             this.searchTitle =
@@ -88,13 +79,12 @@ export const useMovieStore = defineStore("movies", {
                 this.currentPage * this.itemsPerPage,
                 this.totalResults,
             );
-            console.log(newCount);
+
             let apiPage = Math.ceil(newCount / 20);
             apiPage = apiPage < 1 ? 1 : apiPage;
             let searchLoop = async (arr = [], n = apiPage) => {
-                console.log("\n---------------\nStart searchLoop:");
                 let max = newCount;
-                console.log("\narr:", JSON.parse(JSON.stringify(arr)), "\n");
+
                 console.log(
                     "list",
                     JSON.parse(JSON.stringify(this.list)),
@@ -107,7 +97,6 @@ export const useMovieStore = defineStore("movies", {
                     );
                     return arr;
                 } else {
-                    console.log("n:", n);
                     let data = await this.search({
                         query: this.searchTitle,
                         page: n,
@@ -134,15 +123,14 @@ export const useMovieStore = defineStore("movies", {
             };
             if (this.list.length < newCount) {
                 let newData = await searchLoop();
-                console.log("newData", newData);
+
                 for (let m of newData) {
                     this.list.push(m);
                 }
             }
 
             this.isSearching = false;
-            console.log("list2", this.list.length, this.list);
-            console.log(this.currentList);
+
             return this.currentList;
         },
     },

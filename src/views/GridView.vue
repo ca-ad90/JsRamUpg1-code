@@ -22,7 +22,6 @@ export default {
                     this.movies.searchTitle == this.$route.params.title,
                 );
 
-                console.log("watch query");
                 if (this.movies.searchTitle != this.$route.params.title) {
                     this.movies.resetSearch(this.$route.params.title);
                 }
@@ -44,8 +43,6 @@ export default {
     },
     watch: {
         "movies.isSearching"(oldVal, newVal) {
-            console.log("old", oldVal);
-            console.log("new", newVal);
             if (!newVal) {
                 this.list = this.movies.currentList;
             }
@@ -78,7 +75,6 @@ export default {
     },
     methods: {
         test(t, p) {
-            console.log(t, p);
             this.movies.searchTitle = t;
             this.movies.currentPage = Number(p);
             this.movies.startSearch(t, Number(p));
@@ -97,7 +93,7 @@ export default {
                         break;
                 }
             }
-            console.log("p", p);
+
             this.movies.currentPage = p;
             return (
                 "/" + this.movies.searchTitle + "/" + this.movies.currentPage
